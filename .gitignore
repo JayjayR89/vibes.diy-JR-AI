@@ -20,3 +20,6 @@ playwright/.cache/
 coverage/
 
 .DS_Store
+
+# Kiro MCP Manager - Sensitive configuration files
+.kiro/settings/
