@@ -203,7 +203,7 @@ export default function Wild({
                                 rgba(255, 165, 0, 0.4), 
                                 rgba(255, 69, 0, 0.2), 
                                 rgba(139, 69, 19, 0.4))`,
-        boxShadow: "inset 0 0 50px rgba(255, 165, 0, 0.3)",
+        boxShadow: "none",
         borderRadius: "20px",
       }}
     >
@@ -219,7 +219,7 @@ export default function Wild({
             height: `${3 + Math.random() * 8}px`,
             borderRadius: "50%",
             background: `rgba(${255 - Math.random() * 30}, ${165 - Math.random() * 30}, ${Math.random() * 20}, ${0.4 + Math.random() * 0.4})`,
-            boxShadow: "0 0 10px 2px rgba(255, 165, 0, 0.3)",
+            boxShadow: "none",
             animationDelay: `${Math.random() * 15}s`,
             animationDuration: `${10 + Math.random() * 15}s`,
           }}
@@ -237,7 +237,7 @@ export default function Wild({
             fontSize: `${emoji.size}px`,
             opacity: 0.7,
             transform: `rotate(${Math.sin(emoji.y / 50) * 30}deg)`,
-            filter: "drop-shadow(0 0 5px rgba(255,255,255,0.5))",
+            filter: "none",
           }}
         >
           {emoji.emoji}
@@ -257,9 +257,7 @@ export default function Wild({
           <div
             className={`transform transition-all duration-700 ${pulse ? "scale-110 rotate-1" : "scale-100 -rotate-1"}`}
             style={{
-              filter: pulse
-                ? "drop-shadow(0 0 15px rgba(255,165,0,0.8))"
-                : "drop-shadow(0 0 5px rgba(255,165,0,0.3))",
+              filter: "none",
             }}
           >
             <h2
@@ -333,10 +331,7 @@ export default function Wild({
                               ${doc.favorite ? "rgba(255,215,0,0.25)" : "rgba(255,140,0,0.15)"}, 
                               ${doc.favorite ? "rgba(255,165,0,0.35)" : "rgba(139,69,19,0.25)"})`,
                   border: `2px solid ${doc.favorite ? "rgba(255,215,0,0.5)" : "rgba(255,140,0,0.3)"}`,
-                  boxShadow:
-                    hoverIndex === index
-                      ? "0 20px 25px -5px rgba(255, 165, 0, 0.3), 0 10px 10px -5px rgba(255, 69, 0, 0.2)"
-                      : "0 4px 6px -1px rgba(255, 165, 0, 0.1), 0 2px 4px -1px rgba(255, 69, 0, 0.06)",
+                  boxShadow: "none",
                 }}
               >
                 {/* Background pattern unique to each card */}
@@ -403,7 +398,7 @@ export default function Wild({
                         style={{
                           maxHeight: "16rem",
                           border: "2px solid rgba(255,140,0,0.3)",
-                          boxShadow: "inset 0 0 10px rgba(255,140,0,0.2)",
+                          boxShadow: "none",
                         }}
                         loading="lazy"
                       />

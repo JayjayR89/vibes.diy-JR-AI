@@ -181,8 +181,8 @@ function StarfieldEmpty({
           // Subtle colored star core
           const starColor = `hsla(${star.hue}, 6%, 90%, ${opacity})`;
           ctx.fillStyle = starColor;
-          ctx.shadowBlur = size * 2;
-          ctx.shadowColor = starColor;
+          ctx.shadowBlur = 0;
+          ctx.shadowColor = "transparent";
         } else {
           // White star trails
           ctx.strokeStyle = `rgba(200, 220, 255, ${trailOpacity})`;
@@ -195,8 +195,8 @@ function StarfieldEmpty({
 
           // White star core with subtle blue tint
           ctx.fillStyle = `rgba(255, 255, 255, ${opacity})`;
-          ctx.shadowBlur = size * 1.5;
-          ctx.shadowColor = `rgba(210, 220, 255, ${opacity * 0.8})`;
+          ctx.shadowBlur = 0;
+          ctx.shadowColor = "transparent";
         }
 
         // Save ctx for rotation
@@ -254,7 +254,7 @@ function StarfieldEmpty({
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden">
         <div className="animate-[epicMarquee_24s_linear_infinite] whitespace-nowrap">
           <span
-            className="transform-gpu font-black tracking-[0.4em] text-black [text-shadow:0_0_40px_rgba(255,255,255,1),0_0_80px_rgba(255,255,255,0.9),0_0_120px_rgba(255,255,255,0.8),0_0_200px_rgba(255,255,255,0.6)]"
+            className="transform-gpu font-black tracking-[0.4em] text-black"
             style={{
               fontSize: "clamp(8rem, 20vw, 30rem)",
               filter: "brightness(1.3) contrast(1.2)",
@@ -273,8 +273,7 @@ function StarfieldEmpty({
             className="font-bold tracking-wider text-white"
             style={{
               fontSize: "clamp(1.5rem, 4vw, 3rem)",
-              textShadow:
-                "0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.5)",
+              textShadow: "none",
               fontFamily: "Impact, Arial Black, sans-serif",
             }}
           >
@@ -290,7 +289,7 @@ function StarfieldEmpty({
           className="font-mono text-gray-300"
           style={{
             fontSize: "clamp(1rem, 3vw, 2rem)",
-            textShadow: "0 0 10px rgba(255, 255, 255, 0.3)",
+            textShadow: "none",
           }}
         >
           {prefix}
@@ -303,7 +302,7 @@ function StarfieldEmpty({
         <div
           className="font-mono tracking-wide text-gray-300"
           style={{
-            textShadow: "0 0 10px rgba(255, 255, 255, 0.5)",
+            textShadow: "none",
           }}
         >
           GO TO /VIBES/MINE

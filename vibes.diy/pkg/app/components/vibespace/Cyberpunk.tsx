@@ -88,7 +88,7 @@ export default function Cyberpunk({
       className="relative container mx-auto min-h-[80vh] overflow-hidden p-4"
       style={{
         background: `repeating-linear-gradient(120deg, ${NEONS[bgIndex]}10 0 2px, transparent 2px 40px)`,
-        boxShadow: `0 0 100px 20px ${NEONS[bgIndex]}99, 0 0 400px 10px #000 inset`,
+        boxShadow: "none",
         filter: "contrast(1.6) brightness(0.9)",
         border: `3px double ${NEONS[(bgIndex + 2) % NEONS.length]}`,
         borderRadius: "22px",
@@ -166,7 +166,7 @@ export default function Cyberpunk({
               style={{
                 borderColor: NEONS[i % NEONS.length],
                 background: `linear-gradient(120deg, #090a1a 60%, ${NEONS[i % NEONS.length]}22 100%)`,
-                boxShadow: `0 0 45px 5px ${NEONS[i % NEONS.length]}66, 0 0 2px #fff`,
+                boxShadow: "none",
                 filter: "blur(0.2px) contrast(1.2)",
                 animation: glitch ? "glitch 0.2s infinite" : "none",
               }}
@@ -196,7 +196,7 @@ export default function Cyberpunk({
                 <div
                   className="relative mt-3 mb-4 overflow-hidden rounded-xl"
                   style={{
-                    boxShadow: `0 0 15px 1px ${NEONS[(i + 3) % NEONS.length]}`,
+                    boxShadow: "none",
                     border: `1px solid ${NEONS[(i + 4) % NEONS.length]}44`,
                   }}
                 >
@@ -223,7 +223,7 @@ export default function Cyberpunk({
                       className="max-w-full object-contain"
                       style={{
                         maxHeight: "16rem",
-                        filter: `contrast(1.8) saturate(2.5) blur(1.5px) brightness(1.2) drop-shadow(0 0 15px ${NEONS[(i + 3) % NEONS.length]})`,
+                        filter: "contrast(1.8) saturate(2.5) blur(1.5px) brightness(1.2)",
                         opacity: 0.88,
                         mixBlendMode: "screen",
                       }}
@@ -293,7 +293,7 @@ export default function Cyberpunk({
         className="pointer-events-none absolute inset-0 z-40"
         style={{
           borderRadius: "22px",
-          boxShadow: `0 0 80px 10px ${NEONS[bgIndex]}cc,0 0 120px 20px #fff5`,
+          boxShadow: "none",
           border: `2px solid ${NEONS[(bgIndex + 1) % NEONS.length]}`,
           opacity: glitch ? 0.7 : 0.3,
           transition: "all 0.2s",

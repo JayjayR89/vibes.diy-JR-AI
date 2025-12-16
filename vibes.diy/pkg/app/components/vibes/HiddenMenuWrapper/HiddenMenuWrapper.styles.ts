@@ -87,7 +87,7 @@ export const getMenuStyle = (): CSSProperties => ({
   zIndex: hiddenMenuTheme.zIndex.menu,
   color: hiddenMenuTheme.colors.menuText,
   padding: hiddenMenuTheme.dimensions.padding,
-  boxShadow: `0 -2px 10px ${hiddenMenuTheme.colors.shadow}`,
+  boxShadow: "none",
   backgroundColor: hiddenMenuTheme.colors.menuBg,
   backgroundImage: `
     linear-gradient(${hiddenMenuTheme.colors.gridLineColor} 1px, transparent 1px),
@@ -124,7 +124,7 @@ export const getContentWrapperStyle = (
   borderTopColor: hiddenMenuTheme.colors.menuBg,
   borderTopWidth: "1px",
   borderTopStyle: "solid",
-  boxShadow: `0 -2px 10px ${hiddenMenuTheme.colors.shadow}`,
+  boxShadow: "none",
   backgroundColor: hiddenMenuTheme.colors.contentBg,
   animation: isBouncing
     ? "vibes-drop-to-close 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)"

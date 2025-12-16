@@ -89,11 +89,11 @@
   --vibes-border-light: #dddddd;
   --vibes-border-input: var(--vibes-gray-lighter);
 
-  /* Shadows */
+  /* Shadows - removed for flat design */
   --vibes-shadow-color: var(--vibes-near-black);
-  --vibes-shadow-sm: rgba(0, 0, 0, 0.15);
-  --vibes-shadow-md: rgba(0, 0, 0, 0.3);
-  --vibes-shadow-lg: rgba(0, 0, 0, 0.5);
+  --vibes-shadow-sm: none;
+  --vibes-shadow-md: none;
+  --vibes-shadow-lg: none;
   --vibes-shadow-backdrop: rgba(0, 0, 0, 0.9);
 
   /* Component-Specific Semantic Colors */
@@ -161,11 +161,11 @@
     --vibes-border-light: var(--vibes-gray-mid);
     --vibes-border-input: var(--vibes-gray-mid);
 
-    /* Shadows */
+    /* Shadows - removed for flat design */
     --vibes-shadow-color: var(--vibes-near-black);
-    --vibes-shadow-sm: rgba(255, 255, 255, 0.1);
-    --vibes-shadow-md: rgba(255, 255, 255, 0.1);
-    --vibes-shadow-lg: rgba(0, 0, 0, 0.5);
+    --vibes-shadow-sm: none;
+    --vibes-shadow-md: none;
+    --vibes-shadow-lg: none;
     --vibes-shadow-backdrop: rgba(0, 0, 0, 0.9);
 
     /* Component-Specific Dark Mode Adjustments */

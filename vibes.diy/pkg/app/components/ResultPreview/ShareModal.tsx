@@ -90,7 +90,7 @@ export function ShareModal({
       <div
         style={menuStyle}
         onClick={(e) => e.stopPropagation()}
-        className="ring-opacity-5 dark:bg-dark-background-01 w-80 rounded bg-white p-4 shadow-lg ring-1 ring-black"
+        className="ring-opacity-5 dark:bg-dark-background-01 w-80 rounded bg-white p-4 ring-1 ring-black"
       >
         <div
           className="py-1"
@@ -245,7 +245,7 @@ export function ShareModal({
                 type="button"
                 onClick={handlePublish}
                 disabled={isPublishing}
-                className={`flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 px-4 py-2 text-sm font-bold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-violet-500 hover:via-pink-500 hover:to-orange-500 hover:shadow-xl focus:ring-4 focus:ring-violet-400/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-60 md:text-base dark:from-indigo-400 dark:via-violet-400 dark:to-fuchsia-400 ${isPublishing ? "animate-gradient-x stripes-overlay animate-pulse" : ""}`}
+                className={`flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-indigo-500 via-violet-500 to-fuchsia-500 px-4 py-2 text-sm font-bold text-white transition-all duration-300 hover:scale-105 hover:from-violet-500 hover:via-pink-500 hover:to-orange-500 focus:ring-4 focus:ring-violet-400/50 focus:outline-none disabled:cursor-not-allowed disabled:opacity-60 md:text-base dark:from-indigo-400 dark:via-violet-400 dark:to-fuchsia-400 ${isPublishing ? "animate-gradient-x stripes-overlay animate-pulse" : ""}`}
                 role="menuitem"
               >
                 <span className="flex items-center gap-3">

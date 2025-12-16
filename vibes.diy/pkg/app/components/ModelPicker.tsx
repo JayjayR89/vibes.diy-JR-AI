@@ -188,7 +188,7 @@ export default function ModelPicker({
               role="menu"
               id={menuId}
               aria-labelledby={buttonId}
-              className="ring-opacity-5 absolute z-[9999] w-64 rounded-md bg-gray-100 p-1 shadow-lg ring-1 ring-black/10 dark:bg-gray-800 dark:ring-white/10"
+              className="ring-opacity-5 absolute z-[9999] w-64 rounded-md bg-gray-100 p-1 ring-1 ring-black/10 dark:bg-gray-800 dark:ring-white/10"
               style={{
                 // Open upward by default by specifying `bottom` instead of `top`.
                 bottom: menuStyle?.bottom ?? 0,

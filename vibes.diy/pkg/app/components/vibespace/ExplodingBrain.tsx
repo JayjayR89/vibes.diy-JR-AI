@@ -198,7 +198,7 @@ export default function ExplodingBrain({
                     rgba(99, 102, 241, 0.3), 
                     rgba(79, 70, 229, 0.2), 
                     rgba(67, 56, 202, 0.1))`,
-        boxShadow: `inset 0 0 100px ${BRAIN_LEVELS[brainLevel].glow}`,
+        boxShadow: "none",
       }}
     >
       {/* Neuron lines */}
@@ -225,7 +225,7 @@ export default function ExplodingBrain({
       <div
         className={`absolute top-10 right-10 text-6xl transition-all duration-1000 ${brainPulse ? "scale-110" : "scale-100"}`}
         style={{
-          filter: `drop-shadow(0 0 10px ${BRAIN_LEVELS[brainLevel].glow})`,
+          filter: "none",
           animation: "float 5s ease-in-out infinite",
         }}
       >
@@ -279,7 +279,7 @@ export default function ExplodingBrain({
                 style={{
                   borderRightColor: "transparent",
                   borderLeftColor: "transparent",
-                  boxShadow: BRAIN_LEVELS[brainLevel].glow,
+                  boxShadow: "none",
                 }}
               ></div>
               <div
@@ -296,7 +296,7 @@ export default function ExplodingBrain({
           <div
             className={`rounded-xl bg-gradient-to-r py-10 text-center from-${BRAIN_LEVELS[brainLevel].color}/20 to-${BRAIN_LEVELS[(brainLevel + 1) % 4].color}/20 border-2 border-${BRAIN_LEVELS[brainLevel].color}/50`}
             style={{
-              boxShadow: `0 0 20px ${BRAIN_LEVELS[brainLevel].glow}`,
+              boxShadow: "none",
               animation: "expand 3s ease-in-out infinite",
             }}
           >
@@ -326,10 +326,7 @@ export default function ExplodingBrain({
                     borderWidth: "2px",
                     borderStyle: "solid",
                     borderColor: `rgba(${vibeLevel * 50}, ${70 + vibeLevel * 30}, ${200 - vibeLevel * 30}, 0.5)`,
-                    boxShadow:
-                      hoverIndex === index
-                        ? `0 0 30px ${BRAIN_LEVELS[vibeLevel].glow}`
-                        : `0 0 10px ${BRAIN_LEVELS[vibeLevel].glow}`,
+                    boxShadow: "none",
                     transform:
                       hoverIndex === index
                         ? "translateY(-10px) scale(1.03)"
@@ -340,7 +337,7 @@ export default function ExplodingBrain({
                   <div
                     className={`absolute top-3 right-3 transition-all duration-300 opacity-${hoverIndex === index ? "100" : "70"}`}
                     style={{
-                      filter: `drop-shadow(0 0 5px ${BRAIN_LEVELS[vibeLevel].glow})`,
+                      filter: "none",
                       transform:
                         hoverIndex === index ? "scale(1.2)" : "scale(1)",
                     }}
@@ -402,7 +399,7 @@ export default function ExplodingBrain({
                             borderWidth: "2px",
                             borderStyle: "solid",
                             borderColor: `rgba(${vibeLevel * 50}, ${70 + vibeLevel * 30}, ${200 - vibeLevel * 30}, 0.3)`,
-                            boxShadow: `inset 0 0 10px rgba(${vibeLevel * 50}, ${70 + vibeLevel * 30}, ${200 - vibeLevel * 30}, 0.2)`,
+                            boxShadow: "none",
                             animation: `frontPulse ${3 + vibeLevel * 0.5}s infinite ease-in-out`,
                             animationDelay: "0.5s",
                             transformOrigin: "center",
@@ -421,10 +418,7 @@ export default function ExplodingBrain({
                         href={`/remix/${doc.slug}`}
                         className={`relative overflow-hidden font-medium text-${brainColor} bg-${brainColor}/20 hover:bg-${brainColor}/30 rounded-md px-4 py-2 text-sm transition-all duration-300`}
                         style={{
-                          boxShadow:
-                            vibeLevel > 1
-                              ? `0 0 10px ${BRAIN_LEVELS[vibeLevel].glow}`
-                              : "none",
+                          boxShadow: "none",
                         }}
                       >
                         <span className="relative z-10 flex items-center gap-1">
@@ -438,7 +432,7 @@ export default function ExplodingBrain({
                         href={doc.publishedUrl}
                         className={`relative overflow-hidden font-medium text-white bg-${brainColor} hover:bg-${brainColor}/80 rounded-md px-4 py-2 text-sm transition-all duration-300`}
                         style={{
-                          boxShadow: `0 0 ${5 + vibeLevel * 5}px ${BRAIN_LEVELS[vibeLevel].glow}`,
+                          boxShadow: "none",
                         }}
                         target="_blank"
                         rel="noopener noreferrer"

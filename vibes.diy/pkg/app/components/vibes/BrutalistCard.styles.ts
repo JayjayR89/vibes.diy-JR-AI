@@ -54,23 +54,13 @@ function getFontSize(size: BrutalistCardSize): string {
 
 /**
  * Get box shadow based on size and variant
+ * Removed for flat design
  */
 function getBoxShadow(
   size: BrutalistCardSize,
   variant: BrutalistCardVariant,
 ): string {
-  const color = getShadowColor(variant);
-
-  switch (size) {
-    case "sm":
-      return `2px 3px 0px 0px ${color}`;
-    case "md":
-      return `4px 5px 0px 0px ${color}`;
-    case "lg":
-      return `6px 6px 0px 0px ${color}`;
-    default:
-      return `4px 5px 0px 0px ${color}`;
-  }
+  return "none";
 }
 
 /**
@@ -103,7 +93,7 @@ export function getBrutalistCardStyle(
     fontWeight: 500,
     letterSpacing: "0.02em",
     boxShadow: getBoxShadow(size, variant),
-    transition: "box-shadow 0.15s ease, transform 0.15s ease",
+    transition: "transform 0.15s ease",
     boxSizing: "border-box" as const,
   };
 }

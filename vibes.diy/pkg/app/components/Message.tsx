@@ -46,7 +46,7 @@ const AIMessage = memo(
       <div className="mb-4 flex flex-row justify-start px-4">
         <div className="mr-2 flex-shrink-0">
           <div
-            className="bg-light-decorative-02 dark:bg-dark-decorative-02 flex h-8 w-8 items-center justify-center rounded-full shadow-sm"
+            className="bg-light-decorative-02 dark:bg-dark-decorative-02 flex h-8 w-8 items-center justify-center rounded-full"
             title={model || undefined}
           >
             <svg

@@ -232,7 +232,7 @@ export default function Remix({
       {/* Content Container */}
       <div className="relative z-10">
         {isLoading ? (
-          <div className="rounded-xl border border-white/20 bg-black/40 p-8 text-center shadow-2xl backdrop-blur-md">
+          <div className="rounded-xl border border-white/20 bg-black/40 p-8 text-center backdrop-blur-md">
             <div className="mb-4 text-4xl font-bold tracking-wider text-white">
               {appDomain ? `REMIXING ${appDomain.toUpperCase()}` : "LOADING..."}
             </div>
@@ -243,8 +243,8 @@ export default function Remix({
               dangerouslySetInnerHTML={{
                 __html: `
               @keyframes glow {
-                0%, 100% { box-shadow: 0 0 10px 2px rgba(74, 222, 128, 0.6); }
-                50% { box-shadow: 0 0 20px 5px rgba(74, 222, 128, 0.8); }
+                0%, 100% { box-shadow: none; }
+                50% { box-shadow: none; }
               }
               .glow-effect {
                 animation: glow 1.5s ease-in-out infinite;

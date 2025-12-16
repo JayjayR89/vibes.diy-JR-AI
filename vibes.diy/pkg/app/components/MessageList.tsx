@@ -44,7 +44,7 @@ function MessageList({
           className="mb-4 flex flex-row justify-start px-4"
         >
           <div className="mr-2 flex-shrink-0">
-            <div className="bg-accent-02-light dark:bg-accent-02-dark flex h-8 w-8 items-center justify-center rounded-full shadow-sm">
+            <div className="bg-accent-02-light dark:bg-accent-02-dark flex h-8 w-8 items-center justify-center rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5 text-white"
@@ -68,7 +68,7 @@ function MessageList({
               </svg>
             </div>
           </div>
-          <div className="text-light-primary dark:bg-dark-background-01 dark:text-dark-primary max-w-[85%] rounded-xl bg-white px-5 py-3 shadow-md">
+          <div className="text-light-primary dark:bg-dark-background-01 dark:text-dark-primary max-w-[85%] rounded-xl bg-white px-5 py-3">
             <div className="flex items-center space-x-1">
               <div
                 className="accent-01 h-2 w-2 animate-pulse rounded-full opacity-75"

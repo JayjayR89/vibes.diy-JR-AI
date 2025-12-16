@@ -125,9 +125,9 @@ export const vibeControlTheme = {
 
   // Effects
   effects: {
-    buttonShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
-    buttonShadowHover: "0 4px 12px rgba(0, 0, 0, 0.2)",
-    overlayShadow: "0 8px 32px rgba(0, 0, 0, 0.2)",
+    buttonShadow: "none",
+    buttonShadowHover: "none",
+    overlayShadow: "none",
     transition: "0.2s ease-in-out",
     backdropFilter: "blur(4px)",
   },

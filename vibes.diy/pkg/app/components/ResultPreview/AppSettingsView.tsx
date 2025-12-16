@@ -229,7 +229,7 @@ const AppSettingsView: React.FC<AppSettingsViewProps> = ({
                   onChange={(e) => setEditedName(e.target.value)}
                   onKeyDown={handleNameKeyDown}
                   onBlur={handleNameSave}
-                  className="dark:bg-dark-background-00 text-light-primary dark:text-dark-primary flex-1 rounded border-2 border-blue-500 bg-white px-3 py-2 text-sm shadow-sm transition-colors focus:border-blue-600 focus:ring-2 focus:ring-blue-500/30 focus:outline-none dark:border-blue-400 dark:focus:border-blue-300 dark:focus:ring-blue-400/30"
+                  className="dark:bg-dark-background-00 text-light-primary dark:text-dark-primary flex-1 rounded border-2 border-blue-500 bg-white px-3 py-2 text-sm transition-colors focus:border-blue-600 focus:ring-2 focus:ring-blue-500/30 focus:outline-none dark:border-blue-400 dark:focus:border-blue-300 dark:focus:ring-blue-400/30"
                   placeholder="Enter app name"
                 />
                 <button

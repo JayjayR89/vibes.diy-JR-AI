@@ -80,11 +80,7 @@ function NotFoundPage() {
             background: "linear-gradient(145deg, #2a2a2a, #1a1a1a)",
             border: "3px solid #444",
             borderRadius: "8px",
-            boxShadow: `
-            inset 0 2px 4px rgba(255, 255, 255, 0.1),
-            inset 0 -2px 4px rgba(0, 0, 0, 0.3),
-            0 8px 32px rgba(0, 0, 0, 0.5)
-          `,
+            boxShadow: "none",
           }}
         >
           {/* Corner markers */}
@@ -97,7 +93,7 @@ function NotFoundPage() {
             <h1
               className="text-6xl font-black tracking-wider text-white"
               style={{
-                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
+                textShadow: "none",
                 fontFamily: "Impact, Arial Black, sans-serif",
                 letterSpacing: "0.1em",
               }}
@@ -107,7 +103,7 @@ function NotFoundPage() {
             <h2
               className="text-6xl font-black tracking-wider text-white"
               style={{
-                textShadow: "2px 2px 4px rgba(0, 0, 0, 0.8)",
+                textShadow: "none",
                 fontFamily: "Impact, Arial Black, sans-serif",
                 letterSpacing: "0.1em",
               }}
@@ -132,7 +128,7 @@ function NotFoundPage() {
             className="text-lg tracking-wide text-gray-300 transition-colors duration-300 hover:text-white"
             style={{
               fontFamily: "Courier New, monospace",
-              textShadow: "1px 1px 2px rgba(0, 0, 0, 0.5)",
+              textShadow: "none",
             }}
           >
             → HOME

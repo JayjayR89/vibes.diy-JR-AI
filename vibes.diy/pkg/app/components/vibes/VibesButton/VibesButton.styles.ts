@@ -34,15 +34,15 @@ export function getButtonStyle(
 ): React.CSSProperties {
   const cssColor = getVariantColor(variant);
   let transform = "translate(0px, 0px)";
-  let boxShadow = `8px 10px 0px 0px ${cssColor}, 8px 10px 0px 2px var(--vibes-button-border)`;
+  let boxShadow = "none";
 
   if (isHovered && !isActive) {
-    transform = "translate(2px, 2px)";
-    boxShadow = `2px 3px 0px 0px ${cssColor}, 2px 3px 0px 2px var(--vibes-button-border)`;
+    transform = "translate(0px, 0px)";
+    boxShadow = "none";
   }
 
   if (isActive) {
-    transform = "translate(4px, 5px)";
+    transform = "translate(0px, 0px)";
     boxShadow = "none";
   }
 
