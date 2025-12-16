@@ -1,0 +1,27 @@
+[
+  {
+    "id": "pollinations/flux",
+    "name": "Flux (Pollinations)",
+    "description": "Flux image generation model via Pollinations.ai",
+    "featured": true
+  },
+  {
+    "id": "pollinations/stable-diffusion",
+    "name": "Stable Diffusion (Pollinations)",
+    "description": "Stable Diffusion image generation model via Pollinations.ai",
+    "featured": true
+  },
+  {
+    "id": "pollinations/text-generation",
+    "name": "Text Generation (Pollinations)",
+    "description": "Text generation model via Pollinations.ai",
+    "featured": false
+  },
+  {
+    "id": "pollinations/audio-generation",
+    "name": "Audio Generation (Pollinations)",
+    "description": "Audio generation model via Pollinations.ai",
+    "featured": false
+  }
+]
+

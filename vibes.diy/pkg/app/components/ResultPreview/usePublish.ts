@@ -12,6 +12,8 @@ interface UsePublishProps {
   updatePublishedUrl: (url: string) => Promise<void>;
   updateFirehoseShared?: (shared: boolean) => Promise<void>;
   publishedUrl?: string;
+  puterHostingEnabled?: boolean;
+  pollinationsHostingEnabled?: boolean;
 }
 
 export const usePublish = ({
@@ -22,6 +24,8 @@ export const usePublish = ({
   updatePublishedUrl,
   updateFirehoseShared,
   publishedUrl: initialPublishedUrl,
+  puterHostingEnabled,
+  pollinationsHostingEnabled,
 }: UsePublishProps) => {
   const { getToken, userId } = useAuth();
   const [isPublishing, setIsPublishing] = useState(false);
@@ -76,6 +80,8 @@ export const usePublish = ({
         shareToFirehose,
         token,
         userId: userId || undefined,
+        puterHostingEnabled,
+        pollinationsHostingEnabled,
       });
       if (appUrl) {
         setPublishedAppUrl(appUrl);

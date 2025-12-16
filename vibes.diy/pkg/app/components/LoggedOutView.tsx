@@ -6,6 +6,18 @@ import { VibesSwitch } from "./vibes/VibesSwitch/VibesSwitch.js";
 import { LabelContainer } from "./vibes/LabelContainer/index.js";
 import { VibesButton } from "./vibes/VibesButton/index.js";
 
+// Dynamic import for Puter.js to handle cases where it's not loaded
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let puter: any | null = null;
+try {
+  // Try to import Puter.js - it may be loaded via CDN or NPM
+  if (typeof window !== "undefined" && (window as any).puter) {
+    puter = (window as any).puter;
+  }
+} catch {
+  // Puter.js not available
+}
+
 export interface LoggedOutViewProps {
   /** Whether Clerk has finished loading */
   isLoaded?: boolean;
@@ -33,6 +45,39 @@ export default function LoggedOutView({
     await clerk.redirectToSignIn({
       redirectUrl: window.location.href,
     });
+  };
+
+  const handlePuterLogin = async () => {
+    try {
+      // Try to load Puter.js if not already loaded
+      if (!puter && typeof window !== "undefined") {
+        if ((window as any).puter) {
+          puter = (window as any).puter;
+        } else {
+          // Try to import dynamically
+          const puterModule = await import(/* @vite-ignore */ "@heyputer/puter.js");
+          puter = puterModule.default || puterModule;
+        }
+      }
+
+      if (!puter || !puter.auth || !puter.auth.login) {
+        console.error("Puter.js not available. Please ensure @heyputer/puter.js is installed.");
+        return;
+      }
+
+      if (trackingEventName) {
+        trackAuthClick({
+          label: `${trackingEventName} - Puter`,
+          isUserAuthenticated: false,
+        });
+      }
+
+      await puter.auth.login();
+      // After successful login, Puter will handle token storage
+      // We'll check for the token in the settings page
+    } catch (error) {
+      console.error("Puter login failed:", error);
+    }
   };
 
   // Typewriter animation effect
@@ -80,9 +125,25 @@ export default function LoggedOutView({
               gap: "1rem",
             }}
           >
-            <VibesButton icon="login" variant={"blue"} onClick={handleLogin}>
-              Login
-            </VibesButton>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "0.5rem",
+                alignItems: "center",
+              }}
+            >
+              <VibesButton icon="login" variant={"blue"} onClick={handleLogin}>
+                Login with Clerk
+              </VibesButton>
+              <VibesButton
+                icon="login"
+                variant={"blue"}
+                onClick={handlePuterLogin}
+              >
+                Login with Puter
+              </VibesButton>
+            </div>
             <div style={{ width: "300px" }}>
               <h1
                 className="mb-4 text-3xl font-bold"

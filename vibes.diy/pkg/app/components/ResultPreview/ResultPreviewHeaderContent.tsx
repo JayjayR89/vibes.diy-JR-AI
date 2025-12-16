@@ -60,6 +60,7 @@ const ResultPreviewHeaderContent: React.FC<ResultPreviewHeaderContentProps> = ({
     docs: messages,
     updatePublishedUrl,
     updateFirehoseShared,
+    vibeDoc,
   } = useSession(sessionId || "temp-session");
 
   // useViewState is now lifted, props like displayView, navigateToView, viewControls, showViewControls are passed in.
@@ -82,6 +83,8 @@ const ResultPreviewHeaderContent: React.FC<ResultPreviewHeaderContentProps> = ({
     updatePublishedUrl,
     updateFirehoseShared,
     publishedUrl: session.publishedUrl,
+    puterHostingEnabled: vibeDoc?.puterHostingEnabled,
+    pollinationsHostingEnabled: vibeDoc?.pollinationsHostingEnabled,
   });
 
   return (

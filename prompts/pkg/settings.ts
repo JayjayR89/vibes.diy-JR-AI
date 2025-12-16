@@ -29,4 +29,15 @@ export interface UserSettings {
   dependencies?: string[];
 
   demoDataOverride?: boolean;
+
+  // Puter.js settings
+  puterAuthToken?: string;
+  puterAIModel?: string;
+  enablePuterHosting?: boolean;
+  puterHostingEnabled?: boolean;
+
+  // Pollinations.ai settings
+  pollinationsAIModel?: string;
+  enablePollinationsHosting?: boolean;
+  pollinationsHostingEnabled?: boolean;
 }

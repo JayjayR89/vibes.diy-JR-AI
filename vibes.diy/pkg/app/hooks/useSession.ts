@@ -48,6 +48,8 @@ export interface UseSession {
   mergeAiMessage: (newDoc: Partial<AiChatMessageDocument>) => void;
   updateDependencies: (deps: string[], userOverride?: boolean) => Promise<void>;
   updateDemoDataOverride: (override?: boolean | undefined) => Promise<void>;
+  updatePuterHosting: (enabled?: boolean) => Promise<void>;
+  updatePollinationsHosting: (enabled?: boolean) => Promise<void>;
   updateAiSelectedDependencies: (
     aiSelectedDependencies: string[],
   ) => Promise<void>;
@@ -209,6 +211,32 @@ export function useSession(sessionId: string): UseSession {
     [sessionDatabase],
   );
 
+  const updatePuterHosting = useCallback(
+    async (enabled?: boolean) => {
+      const base = vibeRef.current;
+      const updatedDoc = {
+        ...base,
+        puterHostingEnabled: enabled,
+      } as VibeDocument;
+      mergeRef.current(updatedDoc);
+      await sessionDatabase.put(updatedDoc);
+    },
+    [sessionDatabase],
+  );
+
+  const updatePollinationsHosting = useCallback(
+    async (enabled?: boolean) => {
+      const base = vibeRef.current;
+      const updatedDoc = {
+        ...base,
+        pollinationsHostingEnabled: enabled,
+      } as VibeDocument;
+      mergeRef.current(updatedDoc);
+      await sessionDatabase.put(updatedDoc);
+    },
+    [sessionDatabase],
+  );
+
   // Update AI-selected dependencies (internal use for displaying in UI)
   const updateAiSelectedDependencies = useCallback(
     async (aiSelectedDependencies: string[]) => {
@@ -331,6 +359,8 @@ export function useSession(sessionId: string): UseSession {
       effectiveModel,
       updateDependencies,
       updateDemoDataOverride,
+      updatePuterHosting,
+      updatePollinationsHosting,
       updateAiSelectedDependencies,
       updateSelectedModel,
     }),
@@ -353,6 +383,8 @@ export function useSession(sessionId: string): UseSession {
       effectiveModel,
       updateDependencies,
       updateDemoDataOverride,
+      updatePuterHosting,
+      updatePollinationsHosting,
       updateAiSelectedDependencies,
       updateSelectedModel,
     ],

@@ -37,11 +37,20 @@ export function isPermittedModelId(id: unknown): id is string {
 }
 
 export async function resolveEffectiveModel(
-  settingsDoc?: { model?: string },
+  settingsDoc?: { model?: string; puterAIModel?: string; pollinationsAIModel?: string },
   vibeDoc?: { selectedModel?: string },
 ): Promise<string> {
   const sessionChoice = normalizeModelIdInternal(vibeDoc?.selectedModel);
   if (sessionChoice) return sessionChoice;
+  
+  // Check for Puter AI model preference
+  const puterChoice = normalizeModelIdInternal(settingsDoc?.puterAIModel);
+  if (puterChoice && puterChoice.startsWith("puter/")) return puterChoice;
+  
+  // Check for Pollinations.ai model preference
+  const pollinationsChoice = normalizeModelIdInternal(settingsDoc?.pollinationsAIModel);
+  if (pollinationsChoice && pollinationsChoice.startsWith("pollinations/")) return pollinationsChoice;
+  
   const globalChoice = normalizeModelIdInternal(settingsDoc?.model);
   if (globalChoice) return globalChoice;
   return defaultCodingModel();

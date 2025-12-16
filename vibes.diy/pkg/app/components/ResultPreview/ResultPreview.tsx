@@ -33,8 +33,13 @@ function ResultPreview({
   onSyntaxErrorChange,
 }: ResultPreviewProps & { children?: React.ReactNode }) {
   const { isDarkMode } = useTheme();
-  const { vibeDoc, updateDependencies, updateDemoDataOverride } =
-    useSession(sessionId);
+  const {
+    vibeDoc,
+    updateDependencies,
+    updateDemoDataOverride,
+    updatePuterHosting,
+    updatePollinationsHosting,
+  } = useSession(sessionId);
   const showWelcome = !isStreaming && (!code || code.length === 0);
 
   // Use title from props directly
@@ -152,6 +157,10 @@ function ResultPreview({
             onUpdateDependencies={updateDependencies}
             demoDataOverride={vibeDoc?.demoDataOverride}
             onUpdateDemoDataOverride={updateDemoDataOverride}
+            puterHostingEnabled={vibeDoc?.puterHostingEnabled}
+            onUpdatePuterHosting={updatePuterHosting}
+            pollinationsHostingEnabled={vibeDoc?.pollinationsHostingEnabled}
+            onUpdatePollinationsHosting={updatePollinationsHosting}
           />
         </div>
       )}

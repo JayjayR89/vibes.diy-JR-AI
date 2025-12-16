@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import type { MetaFunction } from "react-router";
 import {
   Links,
@@ -144,8 +144,48 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Initialize Puter.js on app load
+function InitializePuter() {
+  useEffect(() => {
+    // Try to load Puter.js if not already loaded
+    if (typeof window !== "undefined" && !(window as any).puter) {
+      // Try to import Puter.js
+      import(/* @vite-ignore */ "@heyputer/puter.js")
+        .then((puterModule) => {
+          const puter = puterModule.default || puterModule;
+          (window as any).puter = puter;
+          // Check for existing auth token and restore session
+          if (puter.auth && puter.auth.getToken) {
+            puter.auth.getToken().catch(() => {
+              // No existing token, that's fine
+            });
+          }
+        })
+        .catch((error) => {
+          // Puter.js not available or failed to load
+          console.debug("Puter.js not available:", error);
+        });
+    } else if (typeof window !== "undefined" && (window as any).puter) {
+      // Puter.js already loaded, check for auth token
+      const puter = (window as any).puter;
+      if (puter.auth && puter.auth.getToken) {
+        puter.auth.getToken().catch(() => {
+          // No existing token, that's fine
+        });
+      }
+    }
+  }, []);
+
+  return null;
+}
+
 export default function App() {
-  return <Outlet />;
+  return (
+    <>
+      <InitializePuter />
+      <Outlet />
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {

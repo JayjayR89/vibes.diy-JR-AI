@@ -29,6 +29,11 @@ interface AppSettingsViewProps {
   // Demo data override settings
   demoDataOverride?: boolean;
   onUpdateDemoDataOverride?: (override?: boolean) => Promise<void> | void;
+  // Hosting settings
+  puterHostingEnabled?: boolean;
+  onUpdatePuterHosting?: (enabled?: boolean) => Promise<void> | void;
+  pollinationsHostingEnabled?: boolean;
+  onUpdatePollinationsHosting?: (enabled?: boolean) => Promise<void> | void;
 }
 
 const AppSettingsView: React.FC<AppSettingsViewProps> = ({
@@ -41,6 +46,10 @@ const AppSettingsView: React.FC<AppSettingsViewProps> = ({
   onUpdateDependencies,
   demoDataOverride,
   onUpdateDemoDataOverride,
+  puterHostingEnabled,
+  onUpdatePuterHosting,
+  pollinationsHostingEnabled,
+  onUpdatePollinationsHosting,
 }) => {
   const [isEditingName, setIsEditingName] = useState(false);
   const [editedName, setEditedName] = useState(title);
@@ -398,6 +407,41 @@ const AppSettingsView: React.FC<AppSettingsViewProps> = ({
                 })}
               </div>
             )}
+          </div>
+
+          <div className="bg-light-background-01 dark:bg-dark-background-01 border-light-decorative-01 dark:border-dark-decorative-01 rounded-lg border p-6">
+            <h3 className="text-light-primary dark:text-dark-primary mb-4 text-lg font-medium">
+              Hosting Options
+            </h3>
+            <p className="text-accent-01 dark:text-accent-01 mb-4 text-sm">
+              Choose hosting providers for this app.
+            </p>
+            <div className="space-y-2">
+              <label className="border-light-decorative-01 dark:border-dark-decorative-01 flex cursor-pointer items-center gap-2 rounded-md border p-2 text-sm">
+                <input
+                  type="checkbox"
+                  checked={puterHostingEnabled || false}
+                  onChange={(e) => onUpdatePuterHosting?.(e.target.checked)}
+                  className="mt-0.5"
+                />
+                <span className="text-light-primary dark:text-dark-primary">
+                  Use Puter Hosting (requires Puter authentication)
+                </span>
+              </label>
+              <label className="border-light-decorative-01 dark:border-dark-decorative-01 flex cursor-pointer items-center gap-2 rounded-md border p-2 text-sm">
+                <input
+                  type="checkbox"
+                  checked={pollinationsHostingEnabled || false}
+                  onChange={(e) =>
+                    onUpdatePollinationsHosting?.(e.target.checked)
+                  }
+                  className="mt-0.5"
+                />
+                <span className="text-light-primary dark:text-dark-primary">
+                  Use Pollinations.ai Hosting
+                </span>
+              </label>
+            </div>
           </div>
 
           <div className="bg-light-background-01 dark:bg-dark-background-01 border-light-decorative-01 dark:border-dark-decorative-01 rounded-lg border p-6">

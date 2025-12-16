@@ -17,6 +17,8 @@ export interface JsonDocs {
   "image-gen.json": JsonDoc;
   "three-js.json": JsonDoc;
   "web-audio.json": JsonDoc;
+  "puter.json": JsonDoc;
+  "pollinations.json": JsonDoc;
 
   [key: string]: JsonDoc;
 }

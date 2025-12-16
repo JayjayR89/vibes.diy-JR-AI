@@ -42,6 +42,14 @@ export interface VibeDocument {
    * When undefined, use LLM decision.
    */
   demoDataOverride?: boolean;
+  /**
+   * Per-vibe Puter hosting setting. When enabled, this vibe will use Puter hosting.
+   */
+  puterHostingEnabled?: boolean;
+  /**
+   * Per-vibe Pollinations.ai hosting setting. When enabled, this vibe will use Pollinations.ai hosting.
+   */
+  pollinationsHostingEnabled?: boolean;
 }
 
 // ===== Vibe Instance Document Type =====

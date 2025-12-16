@@ -41,6 +41,8 @@ export async function publishApp({
   token,
   shareToFirehose,
   fetch,
+  puterHostingEnabled,
+  pollinationsHostingEnabled,
 }: {
   sessionId?: string;
   code: string;
@@ -52,6 +54,8 @@ export async function publishApp({
   token?: string | null;
   shareToFirehose?: boolean;
   fetch?: typeof globalThis.fetch;
+  puterHostingEnabled?: boolean;
+  pollinationsHostingEnabled?: boolean;
 }): Promise<string | undefined> {
   try {
     if (!code || !sessionId) {
@@ -62,16 +66,33 @@ export async function publishApp({
     // Get the session database to retrieve screenshot and metadata
     const sessionDb = fireproof(getSessionDatabaseName(sessionId));
 
-    // Try to get the vibe document which might contain remixOf information
+    // Try to get the vibe document which might contain remixOf information and hosting preferences
     let remixOf = null;
+    let vibeDoc: VibeDocument | null = null;
     try {
-      const vibeDoc = (await sessionDb.get("vibe")) as VibeDocument;
+      vibeDoc = (await sessionDb.get("vibe")) as VibeDocument;
       if (vibeDoc && vibeDoc.remixOf) {
         remixOf = vibeDoc.remixOf;
       }
     } catch (error) {
       // No vibe doc or no remixOf property, which is fine
     }
+
+    // Check global settings for hosting preferences if not set per-vibe
+    const settingsDb = fireproof(VibesDiyEnv.SETTINGS_DBNAME());
+    let globalPuterHosting = false;
+    let globalPollinationsHosting = false;
+    try {
+      const settings = await settingsDb.get("user_settings") as { enablePuterHosting?: boolean; enablePollinationsHosting?: boolean };
+      globalPuterHosting = settings?.enablePuterHosting || false;
+      globalPollinationsHosting = settings?.enablePollinationsHosting || false;
+    } catch {
+      // No settings doc, use defaults
+    }
+
+    // Use per-vibe settings if available, otherwise fall back to global settings
+    const usePuterHosting = puterHostingEnabled ?? vibeDoc?.puterHostingEnabled ?? globalPuterHosting;
+    const usePollinationsHosting = pollinationsHostingEnabled ?? vibeDoc?.pollinationsHostingEnabled ?? globalPollinationsHosting;
 
     // Query for the most recent screenshot document
     const result = await sessionDb.query<string, string, DocFileMeta>("type", {
@@ -118,6 +139,48 @@ export async function publishApp({
         } catch (err) {
           console.error("Error processing screenshot file:", err);
         }
+      }
+    }
+
+    // Check for Puter hosting
+    if (usePuterHosting && typeof window !== "undefined" && (window as any).puter) {
+      try {
+        const puter = (window as any).puter;
+        if (puter.hosting && puter.hosting.publish) {
+          // First, normalize the code to handle different line endings and whitespace
+          const normalizedCode = code.replace(/\r\n/g, "\n").trim();
+          const transformedCode = normalizeComponentExports(normalizedCode);
+          
+          const puterUrl = await puter.hosting.publish({
+            code: transformedCode,
+            title: title || "Untitled App",
+            metadata: { prompt, sessionId },
+          });
+          
+          if (puterUrl && updatePublishedUrl) {
+            await updatePublishedUrl(puterUrl);
+          }
+          
+          return puterUrl;
+        }
+      } catch (error) {
+        console.error("Puter hosting failed, falling back to default:", error);
+      }
+    }
+
+    // Check for Pollinations.ai hosting
+    if (usePollinationsHosting) {
+      try {
+        // Pollinations.ai hosting API integration
+        // Note: This is a placeholder - actual API may vary
+        const normalizedCode = code.replace(/\r\n/g, "\n").trim();
+        const transformedCode = normalizeComponentExports(normalizedCode);
+        
+        // TODO: Implement Pollinations.ai hosting API call
+        // For now, fall through to default hosting
+        console.log("Pollinations.ai hosting not yet implemented, using default");
+      } catch (error) {
+        console.error("Pollinations.ai hosting failed, falling back to default:", error);
       }
     }
 
