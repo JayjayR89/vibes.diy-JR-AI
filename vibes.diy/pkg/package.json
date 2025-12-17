@@ -31,7 +31,7 @@
     "@adviser/cement": "^0.5.5",
     "@clerk/clerk-react": "^5.57.0",
     "@cloudflare/workers-types": "^4.20251205.0",
-    "@fireproof/core": "0.24.2-dev-clerk",
+    "@fireproof/core": "0.24.2-dev-cloud-api",
     "@fireproof/core-runtime": "0.24.2-dev-clerk",
     "@heyputer/puter.js": "^2.2.2",
     "@monaco-editor/react": "^4.7.0",
