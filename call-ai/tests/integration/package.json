@@ -38,7 +38,7 @@
     "@fireproof/core-cli": "0.24.2-dev-clerk",
     "@playwright/test": "^1.57.0",
     "@types/node": "^24.9.1",
-    "@vitest/browser-playwright": "^4.0.15",
+    "@vitest/browser-playwright": "^4.0.16",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
     "vitest": "^4.0.15",
