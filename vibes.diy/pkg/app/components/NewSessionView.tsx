@@ -54,7 +54,10 @@ export default function NewSessionView({
       <div>
         <Toaster />
       </div>
-      <div className="page-grid-background grid-background min-h-screen min-h-[100svh] min-h-[100dvh] w-full">
+      <div
+        className="page-grid-background grid-background min-h-screen min-h-[100svh] min-h-[100dvh] w-full"
+        style={{ backgroundColor: "rgba(255, 255, 255, 1)" }}
+      >
         <div className="px-8 pb-8 pt-0">
           {/* Hamburger menu button - top left in normal flow with z-index */}
           <div className="mb-8 ml-6 relative z-20">
@@ -76,7 +79,23 @@ export default function NewSessionView({
             }}
           >
             <BrutalistCard size="lg">
-              <h1 className="text-4xl font-bold">Code is easy, now</h1>
+              <h1
+                className="text-4xl font-bold"
+                style={{
+                  boxShadow: "0px 4px 12px 0px rgba(0, 0, 0, 0.15)",
+                  borderWidth: "1px",
+                  borderColor: "rgba(0, 0, 0, 1)",
+                  backgroundColor: "unset",
+                  background: "",
+                  backgroundImage: "none",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                }}
+              >
+                Code is easy, now
+              </h1>
             </BrutalistCard>
 
             {/* Prompt suggestions section */}
@@ -117,6 +136,7 @@ export default function NewSessionView({
                   marginBottom: "12px",
                   fontWeight: 700,
                   fontSize: "1.125rem",
+                  textAlign: "center",
                 }}
               >
                 Vibe code apps instantly
@@ -140,8 +160,10 @@ export default function NewSessionView({
 
             {/* Featured vibes section */}
             <BrutalistCard size="lg">
-              <p>Enjoy our</p>
-              <h2 className="text-2xl font-bold">Featured vibes</h2>
+              <p style={{ textAlign: "center" }}>Enjoy our</p>
+              <h2 className="text-2xl font-bold" style={{ textAlign: "center" }}>
+                Featured vibes
+              </h2>
             </BrutalistCard>
 
             <FeaturedVibes count={3} />

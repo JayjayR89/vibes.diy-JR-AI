@@ -334,6 +334,7 @@ export type { ImgGenProps } from './components/ImgGen.js';
 // Export all components for testing and advanced usage
 export { ControlsBar } from './components/ControlsBar.js';
 export { PromptBar } from './components/PromptBar.js';
+export { PuterFeaturesSection } from './components/PuterFeaturesSection.js';
 
 // Export hooks
 export { hashInput, useImageGen } from './hooks/image-gen/index.js';

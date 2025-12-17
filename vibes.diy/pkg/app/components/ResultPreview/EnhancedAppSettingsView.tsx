@@ -14,6 +14,10 @@ import React, {
 import { VibesDiyEnv } from "../../config/env.js";
 import { trackEvent } from "../../utils/analytics.js";
 import { PuterDeploymentButton } from "./PuterDeploymentButton.js";
+// Import Puter library components
+import { PuterLibraryActivator } from "../../../../../src/PuterLibraryActivator.js";
+import { PuterFeatureManager } from "../../../../../src/PuterFeatureManager.js";
+import { PuterLibraryActivationComponent } from "../../../../../src/PuterLibraryActivationComponent.js";
 
 interface AppSettingsViewProps {
   title: string;
@@ -36,6 +40,8 @@ interface AppSettingsViewProps {
   onUpdatePuterHosting?: (enabled?: boolean) => Promise<void> | void;
   pollinationsHostingEnabled?: boolean;
   onUpdatePollinationsHosting?: (enabled?: boolean) => Promise<void> | void;
+  // Puter authentication token
+  puterAuthToken?: string;
 }
 
 const AppSettingsView: React.FC<AppSettingsViewProps> = ({
@@ -52,6 +58,7 @@ const AppSettingsView: React.FC<AppSettingsViewProps> = ({
   onUpdatePuterHosting,
   pollinationsHostingEnabled,
   onUpdatePollinationsHosting,
+  puterAuthToken,
 }) => {
   const [isEditingName, setIsEditingName] = useState(false);
   const [editedName, setEditedName] = useState(title);
@@ -103,6 +110,12 @@ const AppSettingsView: React.FC<AppSettingsViewProps> = ({
 
   // Track previous external dependencies to detect real changes
   const previousExternalDepsRef = useRef<string[]>([]);
+
+  // Puter library activator state
+  const [puterLibraryActivator] = useState(() => {
+    const featureManager = new PuterFeatureManager();
+    return new PuterLibraryActivator(featureManager);
+  });
 
   useEffect(() => {
     setEditedName(title);
@@ -198,6 +211,7 @@ const AppSettingsView: React.FC<AppSettingsViewProps> = ({
       setSaveDepsErr((e as Error)?.message || "Failed to save libraries");
     }
   }, [deps, onUpdateDependencies, catalogNames]);
+
   // Demo data override handler
   const handleDemoDataChange = useCallback(
     (value: "llm" | "on" | "off") => {
@@ -207,6 +221,35 @@ const AppSettingsView: React.FC<AppSettingsViewProps> = ({
     },
     [onUpdateDemoDataOverride],
   );
+
+  // Puter library handlers
+  const isPuterLibrarySelected = deps.includes('puter');
+  
+  const handlePuterLibraryToggle = useCallback(async (selected: boolean) => {
+    // Update dependencies to include/exclude puter
+    const newDeps = selected 
+      ? [...deps.filter(d => d !== 'puter'), 'puter']
+      : deps.filter(d => d !== 'puter');
+    
+    setDeps(newDeps);
+    setHasUnsavedDeps(true);
+    
+    trackEvent("puter_library_toggle", { enabled: selected });
+  }, [deps]);
+
+  const handlePuterActivationSuccess = useCallback((features: string[]) => {
+    trackEvent("puter_library_activation_success", { features });
+    console.log('Puter library activated with features:', features);
+  }, []);
+
+  const handlePuterActivationError = useCallback((error: string) => {
+    trackEvent("puter_library_activation_error", { error });
+    console.error('Puter library activation failed:', error);
+  }, []);
+
+  const handlePuterAuthTokenRequest = useCallback(async () => {
+    return puterAuthToken || null;
+  }, [puterAuthToken]);
 
   return (
     <div
@@ -423,6 +466,24 @@ const AppSettingsView: React.FC<AppSettingsViewProps> = ({
               </div>
             )}
           </div>
+
+          {/* Puter Library Activation Section */}
+          {isPuterLibrarySelected && (
+            <div className="bg-light-background-01 dark:bg-dark-background-01 border-light-decorative-01 dark:border-dark-decorative-01 rounded-lg border p-6">
+              <h3 className="text-light-primary dark:text-dark-primary mb-4 text-lg font-medium">
+                Puter Library Configuration
+              </h3>
+              <PuterLibraryActivationComponent
+                projectId={title}
+                activator={puterLibraryActivator}
+                librarySelected={isPuterLibrarySelected}
+                onLibraryToggle={handlePuterLibraryToggle}
+                onAuthTokenRequest={handlePuterAuthTokenRequest}
+                onActivationSuccess={handlePuterActivationSuccess}
+                onActivationError={handlePuterActivationError}
+              />
+            </div>
+          )}
 
           <div className="bg-light-background-01 dark:bg-dark-background-01 border-light-decorative-01 dark:border-dark-decorative-01 rounded-lg border p-6">
             <h3 className="text-light-primary dark:text-dark-primary mb-4 text-lg font-medium">
