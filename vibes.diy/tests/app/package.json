@@ -29,7 +29,7 @@
     "jose": "^6.1.1",
     "multiformats": "^13.4.1",
     "posthog-js": "^1.306.0",
-    "react": "^19.2.0",
+    "react": "^19.2.3",
     "react-cookie-consent": "^9.0.0",
     "react-dom": "^19.2.0",
     "react-ga4": "^2.1.0",
